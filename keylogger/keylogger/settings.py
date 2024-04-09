@@ -16,7 +16,11 @@ ON_VPS=env("ON_VPS")=="true"
 DEBUG = not ON_VPS
 
 # Allowed domains for the project
-ALLOWED_HOSTS = ['.ngrok-free.app']
+if ON_VPS:
+    ALLOWED_HOSTS = ['184.94.215.214']
+else:
+    ALLOWED_HOSTS = ['.ngrok-free.app']
+
 
 # Application definition
 INSTALLED_APPS = [
