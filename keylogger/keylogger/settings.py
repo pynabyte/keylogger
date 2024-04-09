@@ -19,7 +19,7 @@ DEBUG = not ON_VPS
 if ON_VPS:
     ALLOWED_HOSTS = ['184.94.215.214']
 else:
-    ALLOWED_HOSTS = ['.ngrok-free.app']
+    ALLOWED_HOSTS = ['.ngrok-free.app','localhost']
 
 
 # Application definition
