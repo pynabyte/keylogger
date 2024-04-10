@@ -132,7 +132,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'keylogger/static')
 ]
-STATIC_ROOT = "/home/pynabyte/static_root_directory/static_root_keylogger" if ON_VPS else ''
+STATIC_ROOT = "/home/pynabyte/static_root_keylogger" if ON_VPS else ''
 
 MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
