@@ -128,9 +128,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'keylogger/static')
+]
+STATIC_ROOT = "/home/pynabyte/static_root_directory/static_root_keylogger" if ON_VPS else ''
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media/' 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ## Registering Custom User Model
