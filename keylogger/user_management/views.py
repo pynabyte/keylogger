@@ -2,7 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response as R
 from rest_framework import status as s
 from rest_framework_simplejwt.tokens import RefreshToken
-from user_management.serializers import LoginSerializer, RegisterSerializer
+from user_management.serializers import LoginSerializer, RegisterSerializer,ProfileSerializer
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 
 # Create tokens manually for users
@@ -41,3 +42,11 @@ class RegisterView(APIView):
             user = serializer.save()
             token = get_tokens_for_user(user)
             return R({"token": token, "message": "Registration Succesful"}, s.HTTP_201_CREATED)
+        
+class ProfileView(APIView):
+    permission_classes = [IsAuthenticated,]
+    serializer_class = ProfileSerializer
+    def get(self,request,format=None):
+        user = request.user
+        serializer = self.serializer_class(user,many=False)
+        return R(serializer.data,s.HTTP_200_OK)
