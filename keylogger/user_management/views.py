@@ -48,5 +48,15 @@ class ProfileView(APIView):
     serializer_class = ProfileSerializer
     def get(self,request,format=None):
         user = request.user
-        serializer = self.serializer_class(user,many=False)
+        serializer = self.serializer_class(user,many=False,context={"request":request})
         return R(serializer.data,s.HTTP_200_OK)
+    
+    def patch(self,request,format=None):
+        user = request.user
+        serializer = self.serializer_class(user,data=request.data,partial=True,context={"request":request})
+        if serializer.is_valid():
+            serializer.save()
+            return R(serializer.data,s.HTTP_200_OK)
+        return R({"error":serializer.errors},s.HTTP_400_BAD_REQUEST)
+
+
