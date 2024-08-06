@@ -17,7 +17,7 @@ DEBUG = not ON_VPS
 
 # Allowed domains for the project
 if ON_VPS:
-    ALLOWED_HOSTS = ['184.94.215.214', 'www.keylogger.pynabyte.com', 'keylogger.pynabyte.com']
+    ALLOWED_HOSTS = ['146.190.113.136','184.94.215.214', 'www.keylogger.pynabyte.com', 'keylogger.pynabyte.com']
 else:
     ALLOWED_HOSTS = ['.ngrok-free.app','localhost']
 
