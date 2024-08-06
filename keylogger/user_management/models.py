@@ -20,7 +20,11 @@ class UserManager(BaseUserManager):
         user.is_staff = True
         user.save(using=self._db)
         return user
-    
+
+REGISTRATION_CHOICES = [
+    ('email', 'Email'),
+    ('google', 'Google'),
+]
 class User(AbstractBaseUser,PermissionsMixin):
     email=models.EmailField(verbose_name="Email",max_length=255,unique=True)
     profile_picture = models.ImageField(upload_to="profile_pictures/",null=True,blank=True)
@@ -31,6 +35,11 @@ class User(AbstractBaseUser,PermissionsMixin):
     date_joined = models.DateTimeField(default=timezone.now)
     objects = UserManager()
     dob = models.DateField(default=timezone.now)
+    registration_method = models.CharField(
+        max_length=10,
+        choices=REGISTRATION_CHOICES,
+        default='email'
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ["full_name",]
