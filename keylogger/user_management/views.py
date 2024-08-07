@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response as R
 from rest_framework import status as s
 from rest_framework_simplejwt.tokens import RefreshToken
-from user_management.serializers import LoginSerializer, RegisterSerializer,ProfileSerializer,UserSerializer
+from user_management.serializers import LoginSerializer, RegisterSerializer,ProfileSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 from urllib.parse import urlencode
