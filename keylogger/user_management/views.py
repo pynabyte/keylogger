@@ -77,6 +77,23 @@ def generate_tokens_for_user(user):
     refresh_token = token_data
     return access_token, refresh_token
 
+class GoogleLogin(APIView):
+    def post(self,request,*args,**kwargs):
+        data = request.data
+
+        email = data.get("email")
+        id = data.get("id")
+        full_name = data.get("full_name")
+
+        if not email or not id or not full_name:
+            return R({"error":"Email or ID missing"},status=s.HTTP_400_BAD_REQUEST)
+
+        user = authenticate(email=email, password=id) if User.objects.filter(email=email).exists() else User.objects.create_user(email=email,full_name=full_name,password=id)
+        if user is not None:
+            token = get_tokens_for_user(user)
+            return R({"token": token, "message": "Login Successful."}, s.HTTP_200_OK)
+        else:
+            return R({"error":"Invalid Credentials"},status=s.HTTP_400_BAD_REQUEST)
 
 class GoogleLoginApi(PublicApiMixin, ApiErrorsMixin, APIView):
     class InputSerializer(serializers.Serializer):
