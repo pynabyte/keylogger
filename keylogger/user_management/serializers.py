@@ -27,12 +27,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         return User.objects.create_user(**valid_data)
     
 class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['email','full_name',"profile_picture","date_joined"]
+    date_joined_formatted = serializers.SerializerMethodField()
 
-class UserSerializer(serializers.ModelSerializer):
-    
+    def get_date_joined_formatted(self,obj):
+        return obj.date_joined.date()
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['email','full_name',"profile_picture","date_joined_formatted"]
+
