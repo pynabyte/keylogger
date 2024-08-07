@@ -5,10 +5,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from user_management.serializers import LoginSerializer, RegisterSerializer,ProfileSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
-from urllib.parse import urlencode
-from rest_framework import serializers
-from django.conf import settings
-from django.shortcuts import redirect
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from user_management.models import User
 
