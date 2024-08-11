@@ -134,8 +134,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = "/root/static_root_keylogger" if ON_VPS else ''
 
-MEDIA_URL = '/root/media/' if ON_VPS else '' 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = 'http://146.190.113.136/media/' if ON_VPS else '/media/'
+MEDIA_URL = '/media/' 
+MEDIA_ROOT ='/root/media' if ON_VPS else os.path.join(BASE_DIR, 'media')
 
 ## Registering Custom User Model
 AUTH_USER_MODEL = "user_management.User"
