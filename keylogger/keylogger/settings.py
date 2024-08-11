@@ -13,7 +13,7 @@ SECRET_KEY = env("SECRET_KEY")
 ON_VPS=env("ON_VPS")=="true"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not ON_VPS
+DEBUG = True
 
 # Allowed domains for the project
 if ON_VPS:
